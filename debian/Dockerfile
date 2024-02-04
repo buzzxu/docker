@@ -1,33 +1,22 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
-LABEL MAINTAINER buzzxu <downloadxu@163.com>
+MAINTAINER buzzxu <downloadxu@163.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo \
-    deb http://mirrors.163.com/debian/ buster main non-free contrib \
-    deb http://mirrors.163.com/debian/ buster-updates main non-free contrib \
-    deb http://mirrors.163.com/debian/ buster-backports main non-free contrib \
-    deb http://mirrors.163.com/debian-security/ buster/updates main non-free contrib \
-    deb-src http://mirrors.163.com/debian/ buster main non-free contrib \
-    deb-src http://mirrors.163.com/debian/ buster-updates main non-free contrib \
-    deb-src http://mirrors.163.com/debian/ buster-backports main non-free contrib \
-    deb-src http://mirrors.163.com/debian-security/ buster/updates main non-free contrib \
-    > /etc/apt/sources.list
-
-RUN rm -rf /var/lib/apt/lists/* && \  
-    apt-get clean && \
-    apt-get update -qq && \ 
+RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -qq -y --no-install-recommends openssl ca-certificates && \
-    update-ca-certificates && \
-    rm /etc/localtime && \
-    ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \ 
+    apt-get install -y wget build-essential pkg-config fontconfig --no-install-recommends && \
+	ldconfig /usr/local/lib && \
+	rm /etc/localtime && \
+    ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    apt-get autoclean && \
+    apt-get remove --purge -y wget build-essential pkg-config && \
     apt-get clean && \
+    apt-get autoremove -y && \
+    apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/* 
+    rm -rf /tmp/*
 
-ENV TZ=Asia/Shanghai
-ENV LANG='C.UTF-8' LC_ALL='C.UTF-8'
+ENV TZ Asia/Shanghai
+ENV LANG C.UTF-8
