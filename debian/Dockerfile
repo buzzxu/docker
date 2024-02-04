@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-MAINTAINER buzzxu <downloadxu@163.com>
+LABEL MAINTAINER buzzxu <downloadxu@163.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
