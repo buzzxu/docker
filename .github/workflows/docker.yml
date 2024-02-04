@@ -51,16 +51,6 @@ jobs:
           tags: |
             buzzxu/docker:debian
             ghcr.io/buzzxu/docker:debian
-      -
-        name: Alpine push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: alpine/Dockerfile
-          push: true
-          tags: |
-            buzzxu/docker:alpine
-            ghcr.io/buzzxu/docker:alpine
 
   Alpine:
     name: debian
