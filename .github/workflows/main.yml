@@ -57,7 +57,7 @@ jobs:
           tags: |
             buzzxu/docker:debian
             ghcr.io/buzzxu/docker:debian
-            fucksky-docker.pkg.coding.net/yuanmai/docker:debian
+            fucksky-docker.pkg.coding.net/yuanmai/docker/docker:debian
 
   alpine:
     name: alpine
@@ -101,5 +101,5 @@ jobs:
            tags: |
              buzzxu/docker:alpine
              ghcr.io/buzzxu/docker:alpine
-             fucksky-docker.pkg.coding.net/yuanmai/docker:alpine
+             fucksky-docker.pkg.coding.net/yuanmai/docker/docker:alpine
 
